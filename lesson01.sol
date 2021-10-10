@@ -23,5 +23,8 @@ contract ZombieFactory {
         // 왜 빨간줄이 그어지는건지 모르겠음. push 이건 자스랑 비슷하네
     }
 
-    function _generateRandomDna(string _str) private returns (uint256) {}
+    function _generateRandomDna(string _str) private returns (uint256) {
+        uint256 rand = uint256(keccak256(_str));
+        return rand % dnaModulus;
+    }
 }
