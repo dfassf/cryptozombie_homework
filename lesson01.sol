@@ -17,7 +17,7 @@ contract ZombieFactory {
 
     Zombie[] public Zombies;
 
-    function createZombie(string _name, uint256 _dna) {
+    function _createZombie(string _name, uint256 _dna) private {
         //인자 선언할 때 전부 타입을 지정해줘야 함...귀찮네
         Zombies.push(Zombie(_name, _dna));
         // 왜 빨간줄이 그어지는건지 모르겠음. push 이건 자스랑 비슷하네
