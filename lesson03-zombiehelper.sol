@@ -24,4 +24,12 @@ contract ZombieHelper is ZombieFeeding {
         require(msg.sender == zombieToOwner[_zombieId]);
         zombies[_zombieId].dna = _newDna;
     }
+
+    function getZombiesByOwner(address _owner) external view returns (uint[]) {
+        //자꾸 리턴즈를 아래쪽에 쓰게 된다 더 익숙해져야 할 듯
+        uint[] memory result = new uint[](ownerZombieCount[_owner]);
+        //_owner라는 사람의 좀비 갯수를 zombiecount로 받고 이것이 곧 배열의 길이가 됨.
+        return result;
+  }
+    }
 }
