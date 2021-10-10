@@ -18,7 +18,7 @@ contract ZombieFactory {
 
     // map 함수랑 같은 것 같은데 키가 address인건 생소하다.
 
-    function _createZombie(string _name, uint256 _dna) private {
+    function _createZombie(string _name, uint256 _dna) internal {
         uint256 id = zombies.push(Zombie(_name, _dna)) - 1;
         zombieToOwner[id] = msg.sender; //좀비오너의 아이디를 sender로 지정
         ownerZombieCount[msg.sender]++; //좀비 수 추가
@@ -38,5 +38,3 @@ contract ZombieFactory {
         _createZombie(_name, randDna);
     }
 }
-
-contract ZombieFeeding is ZombieFactory {}
