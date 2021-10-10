@@ -23,7 +23,9 @@ contract KittyInterface {
 contract ZombieFeeding is ZombieFactory {
     KittyInterface kittyContract;
 
-    function setKittyContractAddress(address _address) external {}
+    function setKittyContractAddress(address _address) external onlyOwner {
+        kittyContract = KittyInterface(_address);
+    }
 
     // 잘 이해는 안되지만 이걸 바꾸면 뭔가 되겠지..
     function feedAndMultiply(
