@@ -27,6 +27,16 @@ contract ZombieFeeding is ZombieFactory {
         kittyContract = KittyInterface(_address);
     }
 
+    function _triggerCooldown(Zombie storage _zombie) internal {
+        _zombie.readyTime = uint32(now + cooldownTime);
+    } // 쿨다운이 되려면 하루가 지나야 하는 것 같음?
+
+    function _isReady(Zombie storage _zombie) internal view returns (bool) {
+        return (_zombie.readyTime <= now);
+    } // 쿨다운 되면 먹이를 먹을 준비가 됐는지 알려주는..
+
+    // js 콘솔로그에 저거 찍으면 true/false 나오는 것처럼 저거 자체를 리턴할 수도 있네
+
     // 잘 이해는 안되지만 이걸 바꾸면 뭔가 되겠지..
     function feedAndMultiply(
         uint256 _zombieId,
