@@ -32,6 +32,8 @@ contract ZombieFactory {
     }
 
     function createRandomZombie(string _name) public {
+        require(ownerZombieCount[msg.sender] == 0);
+        //ownerZombieCount가 0이어야 한다
         uint256 randDna = _generateRandomDna(_name);
         _createZombie(_name, randDna);
     }
