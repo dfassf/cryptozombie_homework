@@ -34,4 +34,10 @@ contract ZombieFeeding is ZombieFactory {
         // 새로운 DNA는 먹잇감과 기존 좀비의 평균으로 내고 그 DNA를 바탕으로 좀비를 새로 생성
         _createZombie("NoName", newDna);
     }
+
+    function feedOnKitty(uint256 _zombieId, uint256 _kittyId) public {
+        uint256 kittyDna;
+        (, , , , , , , , kittyDna) = kittyContract.getKitty(_kittyId);
+        feedAndMultiply(_zombieId, kittyDna);
+    }
 }
