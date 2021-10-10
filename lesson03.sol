@@ -42,10 +42,10 @@ contract ZombieFeeding is ZombieFactory {
         uint256 _zombieId,
         uint256 _targetDna,
         string _species
-    ) public {
+    ) internal {
         require(msg.sender == zombieToOwner[_zombieId]);
         Zombie storage myZombie = zombies[_zombieId];
-
+        require(_isReady(myZombie) == true); // 이거 틀리다고 하는데 그냥 써도 되지 않나..
         _targetDna = _targetDna % dnaModulus; //타겟디엔에이를 16자로 제한한다?
         uint256 newDna = (myZombie.dna + _targetDna) / 2;
         // 새로운 DNA는 먹잇감과 기존 좀비의 평균으로 내고 그 DNA를 바탕으로 좀비를 새로 생성
@@ -55,6 +55,7 @@ contract ZombieFeeding is ZombieFactory {
             // newDna
         }
         _createZombie("NoName", newDna);
+        _triggerCooldown(myZombie);
     }
 
     function feedOnKitty(uint256 _zombieId, uint256 _kittyId) public {
