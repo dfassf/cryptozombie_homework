@@ -14,4 +14,6 @@ contract ZombieFactory {
         string name;
         uint256 dna;
     }
+
+    Zombie[] public Zombies;
 }
