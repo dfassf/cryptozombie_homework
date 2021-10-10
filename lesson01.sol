@@ -7,4 +7,11 @@ contract ZombieFactory {
 
     uint256 dnaDigits = 16;
     uint256 dnaModulus = 10**dnaDigits; // 세미콜론 붙이는게 씨쁠쁠같네
+    //왜 이렇게 됐는지 모르겠음
+
+    struct Zombie {
+        // contract가 js 파일이라면 이건 그 안에서 변수를 설정한 느낌?
+        string name;
+        uint256 dna;
+    }
 }
