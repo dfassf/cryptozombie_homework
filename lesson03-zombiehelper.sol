@@ -29,6 +29,16 @@ contract ZombieHelper is ZombieFeeding {
         //자꾸 리턴즈를 아래쪽에 쓰게 된다 더 익숙해져야 할 듯
         uint[] memory result = new uint[](ownerZombieCount[_owner]);
         //_owner라는 사람의 좀비 갯수를 zombiecount로 받고 이것이 곧 배열의 길이가 됨.
+        // result 안에 소유 좀비의 정보가 들어갈 것임
+        uint counter = 0;
+        for(uint i = 0; i < zombies.length; i++){
+            //씨쁠쁠하고 넘 똑같네
+            if(zombieToOwner[i] == _owner){
+                result[counter] = i;
+                // 잘 모르겠다.
+                counter ++;
+            }
+        }
         return result;
   }
     }
