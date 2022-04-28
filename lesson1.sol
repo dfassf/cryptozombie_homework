@@ -25,4 +25,5 @@ contract ZombieFactory {
         return rand % dnaModulus;
     }
 
+
 }
