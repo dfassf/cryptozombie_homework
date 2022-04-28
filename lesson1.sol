@@ -9,4 +9,12 @@ contract ZombieFactory {
         string name;
         uint dna;
     }
+
+    // uint[2] fixedArray; 고정 배열 렝스 2
+    // 타입 갯수 이름
+    //uint[] dynamicArray; 타입 배열명
+
+    Zombie[] public zombies;
+
+    
 }
