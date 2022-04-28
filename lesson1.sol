@@ -20,4 +20,8 @@ contract ZombieFactory {
         zombies.push(Zombie(_name, _dna));
     }
 
+    function _generateRandomDna(string _str) private view returns(uint) {
+        
+    }
+
 }
