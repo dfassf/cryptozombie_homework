@@ -4,7 +4,9 @@ import "./zombieattack.sol";
 import "./ERC721.sol";
 
 contract ZombieOwnership is ZombieAttack, ERC721 {
-  
+  /// @title 제목
+  /// @author 신우
+  /// @dev based on ERC721 in OpenZeppelin
   mapping (uint => address) zombieApprovals; 
 
   function balanceOf(address _owner) public view returns (uint256 _balance) {
