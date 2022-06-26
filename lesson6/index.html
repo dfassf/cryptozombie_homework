@@ -11,10 +11,20 @@
 
     <script>
       var cryptoZombies;
+      var userAccount;
 
       function startApp() {
         var cryptoZombiesAddress = "YOUR_CONTRACT_ADDRESS";
         cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+      
+        var accountInterval = setInterval(function() {
+        // 계정이 바뀌었는지 확인
+          if (web3.eth.accounts[0] !== userAccount) {
+            userAccount = web3.eth.accounts[0];
+            // 새 계정에 대한 UI로 업데이트하기 위한 함수 호출
+            getZombiesByOwner(userAccount).then(displayZombies)
+          }
+        }, 100);
       }
 
       function getZombieDetails(id) {
@@ -31,7 +41,6 @@
 
       window.addEventListener('load', function() {
 
-        // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
         if (typeof web3 !== 'undefined') {
 
           web3js = new Web3(web3.currentProvider);
