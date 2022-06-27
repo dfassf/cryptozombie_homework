@@ -18,13 +18,30 @@
         cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
       
         var accountInterval = setInterval(function() {
-        // 계정이 바뀌었는지 확인
           if (web3.eth.accounts[0] !== userAccount) {
             userAccount = web3.eth.accounts[0];
-            // 새 계정에 대한 UI로 업데이트하기 위한 함수 호출
             getZombiesByOwner(userAccount).then(displayZombies)
           }
         }, 100);
+      }
+
+      function displayZombies(ids) {
+        $("#zombies").empty();
+        for(id of ids) {
+          getZombieDetails(id)
+.then(function(zombie) {
+  $("#zombies").append(`<div class="zombie">
+    <ul>
+      <li>Name: ${zombie.name}</li>
+      <li>DNA: ${zombie.dna}</li>
+      <li>Level: ${zombie.level}</li>
+      <li>Wins: ${zombie.winCount}</li>
+      <li>Losses: ${zombie.lossCount}</li>
+      <li>Ready Time: ${zombie.readyTime}</li>
+    </ul>
+  </div>`);
+});
+        }
       }
 
       function getZombieDetails(id) {
