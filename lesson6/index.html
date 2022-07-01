@@ -28,7 +28,15 @@
             .then(displayZombies);
           }
         }, 100);
-      }
+
+        cryptoZombies.events.Transfer({ filter: { _to: userAccount } })
+          .on("data", function(event) {
+            let data = event.returnValues;
+            // 현재 사용자가 방금 좀비를 받았네!
+            // 해당 좀비를 보여줄 수 있도록 UI를 업데이트할 수 있도록 여기에 추가
+            getZombiesByOwner(userAccount).then(displayZombies);
+          }).on("error", console.error);
+        }
 
       function displayZombies(ids) {
         $("#zombies").empty();
