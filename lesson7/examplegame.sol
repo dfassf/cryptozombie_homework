@@ -4,6 +4,8 @@ import "./ZB/ZBGameMode.sol";
 
 contract ExampleGame is ZBGameMode  {
 
-    // 여기서 시작하게
+    function beforeMatchStart(bytes serializedGameState) {
+        
+    }
 
 }
